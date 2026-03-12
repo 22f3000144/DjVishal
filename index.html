@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DJ Vishal Events</title>
+
+<link rel="icon" type="image/png" href="gopalu.png">
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="#booking">Book</a>
+</nav>
+
+<header>
+<h1>DJ Vishal Events 🎧</h1>
+<p>Wedding | Birthday | Anniversary | DJ Night</p>
+</header>
+
+<section class="gallery">
+
+<div class="box">
+<img src="HB.jpeg">
+</div>
+
+<div class="box">
+<img src="HB2.jpeg">
+</div>
+
+<div class="box">
+<img src="HB3.jpeg">
+</div>
+
+<div class="box">
+<img src="HB4.jpeg">
+</div>
+
+</section>
+
+<section class="instagram">
+
+<h2>Our Instagram Gallery</h2>
+
+<p>See latest events on Instagram</p>
+
+<a class="instaBtn"
+href="https://instagram.com/vishal_dj_surajkund_wale_up65"
+target="_blank">
+
+View Instagram Gallery
+
+</a>
+
+</section>
+
+<section id="booking">
+
+<h2>Book DJ Event</h2>
+
+<form id="bookingForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<input type="date" id="date" required>
+
+<select id="event">
+
+<option>Wedding</option>
+<option>Birthday</option>
+<option>Anniversary</option>
+<option>DJ Night</option>
+
+</select>
+
+<textarea id="message"
+placeholder="Event details"></textarea>
+
+<button type="submit">Book via WhatsApp</button>
+
+</form>
+
+<div class="contactButtons">
+
+<a href="tel:+919569870766">📞 Call</a>
+
+<a href="sms:+919569870766">📩 SMS</a>
+
+<a href="https://wa.me/919569870766">💬 WhatsApp</a>
+
+</div>
+
+</section>
+
+<script>
+
+document.getElementById("bookingForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+var name=document.getElementById("name").value;
+var phone=document.getElementById("phone").value;
+var date=document.getElementById("date").value;
+var event=document.getElementById("event").value;
+var message=document.getElementById("message").value;
+
+var text="Hello DJ Vishal,%0A"
++"Name: "+name+"%0A"
++"Phone: "+phone+"%0A"
++"Event: "+event+"%0A"
++"Date: "+date+"%0A"
++"Details: "+message;
+
+window.open(
+"https://wa.me/919569870766?text="+text,
+"_blank"
+);
+
+});
+
+</script>
+
+</body>
+</html>
