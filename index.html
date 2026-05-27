@@ -1,137 +1,914 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DJ Vishal Events</title>
-
-<link rel="icon" type="image/png" href="gopalu.png">
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Vishal Events 🎧 - Professional DJ & Event Management Varanasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0D9488',
+                        primaryDark: '#0F766E',
+                        primaryLight: '#CCFBF1',
+                        accent: '#F97316',
+                        accentDark: '#EA580C',
+                        accentLight: '#FFEDD5',
+                        base: '#FFFBEB',
+                        baseDark: '#FEF3C7',
+                        text: '#1F2937',
+                        textLight: '#6B7280'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-hero { background: linear-gradient(135deg, #FFFBEB 0%, #CCFBF1 50%, #FFEDD5 100%); }
+        .pattern-bg {
+            background-image: radial-gradient(#0D9488 0.5px, transparent 0.5px), radial-gradient(#F97316 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.03;
+        }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(13, 148, 136, 0.15); }
+        .btn-primary { background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%); transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -5px rgba(13, 148, 136, 0.4); }
+        .btn-accent { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); transition: all 0.3s ease; }
+        .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.4); }
+        .nav-blur { backdrop-filter: blur(12px); background: rgba(255, 251, 235, 0.9); }
+        .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .marquee { animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .tab-active { border-bottom: 3px solid #F97316; color: #0D9488; }
+        .form-input:focus { border-color: #0D9488; box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1); }
+        .service-icon { background: linear-gradient(135deg, #CCFBF1 0%, #FFEDD5 100%); }
+        .modal-overlay { background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+        .venue-card img { transition: transform 0.5s ease; }
+        .venue-card:hover img { transform: scale(1.05); }
+        .step-line::after { content: ''; position: absolute; top: 24px; left: calc(50% + 24px); width: calc(100% - 48px); height: 2px; background: linear-gradient(90deg, #0D9488, #F97316); }
+        @keyframes pulse-ring { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.3); opacity: 0; } }
+        .pulse-ring::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid #F97316; animation: pulse-ring 1.5s ease-out infinite; }
+        .scheme-card { background: linear-gradient(135deg, #FFFBEB 0%, #CCFBF1 100%); }
+        .faq-item .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-icon { transition: transform 0.3s ease; }
+        input, select, textarea { outline: none; }
+        input:focus, select:focus, textarea:focus { border-color: #0D9488 !important; box-shadow: 0 0 0 3px rgba(13,148,136,0.1); }
+        .timeline-dot { position: relative; }
+        .timeline-dot::before { content: ''; position: absolute; left: 15px; top: 40px; bottom: -40px; width: 2px; background: linear-gradient(#0D9488, #F97316); }
+        .timeline-dot:last-child::before { display: none; }
+        .hindi { font-family: 'Noto Sans Devanagari', 'Mangal', serif; line-height: 1.9; }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+    </style>
 </head>
+<body class="bg-base text-text font-sans antialiased overflow-x-hidden">
 
-<body>
+    <!-- Navigation -->
+    <nav class="nav-blur fixed w-full z-50 border-b border-orange-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-primaryDark rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-serif font-bold text-primary tracking-tight">DJ Vishal Events</h1>
+                        <p class="text-xs text-textLight tracking-widest uppercase">Varanasi</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-text hover:text-primary font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-text hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#gallery" class="text-text hover:text-primary font-medium transition-colors">Gallery</a>
+                    <a href="#packages" class="text-text hover:text-primary font-medium transition-colors">Packages</a>
+                    <a href="#faq" class="text-text hover:text-primary font-medium transition-colors">FAQ</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleSearch()" class="p-2 text-text hover:text-primary transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button onclick="scrollToSection('booking')" class="hidden md:block px-6 py-2.5 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all">
+                        Book Now
+                    </button>
+                    <button class="md:hidden p-2 text-text" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="searchBar" class="hidden bg-white border-b border-orange-100 px-4 py-4">
+            <div class="max-w-3xl mx-auto relative">
+                <input type="text" placeholder="Search services, events, packages..." class="w-full px-6 py-3 rounded-full border-2 border-primaryLight focus:border-primary focus:outline-none pl-12">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-primary"></i>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-orange-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#services" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-primaryLight text-text">Services</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-primaryLight text-text">About</a>
+                <a href="#gallery" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-primaryLight text-text">Gallery</a>
+                <a href="#packages" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-primaryLight text-text">Packages</a>
+                <a href="#faq" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-lg hover:bg-primaryLight text-text">FAQ</a>
+                <button onclick="scrollToSection('booking');toggleMobileMenu()" class="w-full mt-4 px-6 py-3 bg-primary text-white rounded-full font-semibold">Book Now</button>
+            </div>
+        </div>
+    </nav>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="#booking">Book</a>
-</nav>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 gradient-hero overflow-hidden">
+        <div class="pattern-bg absolute inset-0"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-accent/10 rounded-full floating" style="animation-delay:0s;"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-primary/10 rounded-full floating" style="animation-delay:2s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-accent/20 rounded-full floating" style="animation-delay:4s;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/80 border border-primary/20 text-primary text-sm font-semibold shadow-sm">
+                        <span class="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse"></span>
+                        Varanasi's #1 DJ & Event Company
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight text-text">
+                        DJ Vishal Events <span class="text-accent">🎧</span><br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Varanasi</span>
+                    </h1>
+                    <p class="text-xl text-textLight leading-relaxed max-w-lg">
+                        Professional DJ & Event Management Services in Varanasi
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-white rounded-full border border-orange-100 text-sm font-medium text-text shadow-sm">💍 Wedding</span>
+                        <span class="px-4 py-2 bg-white rounded-full border border-orange-100 text-sm font-medium text-text shadow-sm">🎂 Birthday</span>
+                        <span class="px-4 py-2 bg-white rounded-full border border-orange-100 text-sm font-medium text-text shadow-sm">💑 Anniversary</span>
+                        <span class="px-4 py-2 bg-white rounded-full border border-orange-100 text-sm font-medium text-text shadow-sm">🎉 DJ Night</span>
+                        <span class="px-4 py-2 bg-white rounded-full border border-orange-100 text-sm font-medium text-text shadow-sm">🎤 Stage Show</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="bookOnWhatsApp()" class="btn-accent px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg flex items-center justify-center gap-2 group">
+                            <i class="fab fa-whatsapp"></i> Book on WhatsApp
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <button onclick="scrollToSection('services')" class="px-8 py-4 rounded-full border-2 border-primary text-primary font-bold text-lg hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-music"></i> Our Services
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-6 pt-4">
+                        <div class="flex -space-x-3">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" class="w-10 h-10 rounded-full border-2 border-white" alt="Client">
+                        </div>
+                        <div>
+                            <p class="font-bold text-text">500+</p>
+                            <p class="text-sm text-textLight">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=600&fit=crop" alt="DJ Setup" class="w-full h-auto object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur rounded-2xl p-4 shadow-xl">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-textLight">WhatsApp Booking</p>
+                                    <p class="font-bold text-primary flex items-center gap-2">
+                                        <i class="fas fa-check-circle"></i> Available 24×7
+                                    </p>
+                                </div>
+                                <div class="w-12 h-12 bg-accentLight rounded-full flex items-center justify-center text-accent">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-accent/20 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<header>
-<h1>DJ Vishal Events 🎧</h1>
-<p>Wedding | Birthday | Anniversary | DJ Night</p>
-</header>
+    <!-- Stats Bar -->
+    <div class="bg-primary text-white py-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="marquee whitespace-nowrap flex gap-8 text-4xl font-bold py-4">
+                <span>DJ SETUP</span><span>•</span><span>LED LIGHTING</span><span>•</span><span>STAGE DECORATION</span><span>•</span><span>WEDDING EVENTS</span><span>•</span>
+                <span>DJ SETUP</span><span>•</span><span>LED LIGHTING</span><span>•</span><span>STAGE DECORATION</span><span>•</span><span>WEDDING EVENTS</span><span>•</span>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><p class="text-3xl font-bold text-accentLight">500+</p><p class="text-sm opacity-80 mt-1">Events Done</p></div>
+                <div><p class="text-3xl font-bold text-accentLight">8+</p><p class="text-sm opacity-80 mt-1">Years Experience</p></div>
+                <div><p class="text-3xl font-bold text-accentLight">24/7</p><p class="text-sm opacity-80 mt-1">Booking Available</p></div>
+                <div><p class="text-3xl font-bold text-accentLight">100%</p><p class="text-sm opacity-80 mt-1">Client Satisfaction</p></div>
+            </div>
+        </div>
+    </div>
 
-<section class="gallery">
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">What We Offer</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3">Our Services</h2>
+                <p class="text-textLight mt-4 max-w-2xl mx-auto">From professional DJ setups to full event management — we make every occasion unforgettable.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-headphones-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Professional DJ Setup</h3>
+                    <p class="text-textLight text-sm">High-end sound systems, mixers, and professional DJ equipment for all event sizes.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">LED Lighting Decoration</h3>
+                    <p class="text-textLight text-sm">Stunning LED panels, wash lights, moving heads and laser effects to transform any venue.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Balloon Decoration</h3>
+                    <p class="text-textLight text-sm">Creative balloon arches, bouquets, and themed decorations for birthdays and parties.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Stage & Sound Setup</h3>
+                    <p class="text-textLight text-sm">Full stage construction, backdrop, truss, PA system and microphone setup for live shows.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Wedding Event Management</h3>
+                    <p class="text-textLight text-sm">Complete wedding planning with baarat DJ, sangeet night, phera, and reception setup.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Birthday Party Decoration</h3>
+                    <p class="text-textLight text-sm">Themed birthday setups with DJ, lights, props, and photobooth arrangements.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">Anniversary Celebration</h3>
+                    <p class="text-textLight text-sm">Romantic anniversary setups with candlelight, floral decor, DJ, and LED ambience.</p>
+                </div>
+                <div class="card-hover bg-base rounded-3xl p-6 border border-orange-100 scroll-reveal text-center">
+                    <div class="service-icon w-16 h-16 rounded-2xl flex items-center justify-center text-primary text-2xl mb-5 mx-auto">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mb-2">DJ Night & Live Events</h3>
+                    <p class="text-textLight text-sm">High-energy DJ nights, college fests, corporate events, and open-air stage shows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="box">
-<img src="HB.jpeg">
-</div>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative scroll-reveal">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=700&h=550&fit=crop" alt="DJ Vishal Events Setup" class="w-full h-auto object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                    <!-- Floating badge -->
+                    <div class="absolute top-6 left-6 bg-white rounded-2xl p-4 shadow-xl">
+                        <p class="text-3xl font-bold text-primary">8+</p>
+                        <p class="text-xs text-textLight">Years in Varanasi</p>
+                    </div>
+                </div>
+                <div class="scroll-reveal space-y-6">
+                    <span class="text-accent font-bold tracking-widest uppercase text-sm">Who We Are</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-2">About DJ Vishal Events</h2>
+                    <div class="p-6 bg-white rounded-2xl border border-orange-100 shadow-sm">
+                        <p class="hindi text-text text-base leading-loose">
+                            डीजे विशाल इवेंट्स वाराणसी की एक प्रोफेशनल इवेंट और डीजे सर्विस कंपनी है, जो शादी, सालगिरह, जन्मदिन पार्टी, डीजे नाइट, स्टेज शो और सभी प्रकार के पारिवारिक एवं कॉर्पोरेट कार्यक्रमों के लिए शानदार डीजे सेटअप और डेकोरेशन सेवाएँ प्रदान करती है।
+                        </p>
+                        <p class="hindi text-textLight text-sm mt-4 leading-loose">
+                            हम आधुनिक साउंड सिस्टम, प्रोफेशनल लाइटिंग, स्मोक इफेक्ट, बैलून डेकोरेशन और आकर्षक स्टेज सेटअप के साथ आपके हर कार्यक्रम को यादगार बनाने का कार्य करते हैं।
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-orange-100">
+                            <div class="w-10 h-10 bg-primaryLight rounded-xl flex items-center justify-center text-primary"><i class="fas fa-volume-up"></i></div>
+                            <div><p class="font-semibold text-sm text-text">Modern Sound</p><p class="text-xs text-textLight">High-end Systems</p></div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-orange-100">
+                            <div class="w-10 h-10 bg-accentLight rounded-xl flex items-center justify-center text-accent"><i class="fas fa-lightbulb"></i></div>
+                            <div><p class="font-semibold text-sm text-text">Pro Lighting</p><p class="text-xs text-textLight">LED & Effects</p></div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-orange-100">
+                            <div class="w-10 h-10 bg-primaryLight rounded-xl flex items-center justify-center text-primary"><i class="fas fa-smog"></i></div>
+                            <div><p class="font-semibold text-sm text-text">Smoke Effects</p><p class="text-xs text-textLight">Fog & Haze</p></div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-orange-100">
+                            <div class="w-10 h-10 bg-accentLight rounded-xl flex items-center justify-center text-accent"><i class="fas fa-star"></i></div>
+                            <div><p class="font-semibold text-sm text-text">Stage Setup</p><p class="text-xs text-textLight">Full Decor</p></div>
+                        </div>
+                    </div>
+                    <button onclick="bookOnWhatsApp()" class="btn-accent px-8 py-4 rounded-full text-white font-bold text-lg shadow-lg flex items-center gap-2 w-fit">
+                        <i class="fab fa-whatsapp"></i> Book Your Event
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="box">
-<img src="HB2.jpeg">
-</div>
+    <!-- How It Works -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Simple Booking</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3">How to Book</h2>
+                <p class="text-textLight mt-4 max-w-2xl mx-auto">Book your event in 4 simple steps — quick, easy, and confirmation within minutes.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <div class="text-center scroll-reveal relative step-line">
+                    <div class="relative inline-block pulse-ring">
+                        <div class="w-12 h-12 rounded-full bg-primary text-white font-bold text-xl flex items-center justify-center mx-auto shadow-lg relative z-10">1</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-text mt-5 mb-2">Contact Us</h3>
+                    <p class="text-textLight text-sm">Call or WhatsApp us at +91 9569870766 to enquire about your event date.</p>
+                </div>
+                <div class="text-center scroll-reveal relative step-line" style="transition-delay:0.1s">
+                    <div class="w-12 h-12 rounded-full bg-accent text-white font-bold text-xl flex items-center justify-center mx-auto shadow-lg">2</div>
+                    <h3 class="text-lg font-bold text-text mt-5 mb-2">Share Details</h3>
+                    <p class="text-textLight text-sm">Tell us your event type, date, venue, and requirements for a custom quote.</p>
+                </div>
+                <div class="text-center scroll-reveal relative step-line" style="transition-delay:0.2s">
+                    <div class="w-12 h-12 rounded-full bg-primary text-white font-bold text-xl flex items-center justify-center mx-auto shadow-lg">3</div>
+                    <h3 class="text-lg font-bold text-text mt-5 mb-2">Confirm Booking</h3>
+                    <p class="text-textLight text-sm">Agree on the package, pay a small advance, and lock your date instantly.</p>
+                </div>
+                <div class="text-center scroll-reveal" style="transition-delay:0.3s">
+                    <div class="w-12 h-12 rounded-full bg-accent text-white font-bold text-xl flex items-center justify-center mx-auto shadow-lg">4</div>
+                    <h3 class="text-lg font-bold text-text mt-5 mb-2">Enjoy Your Event!</h3>
+                    <p class="text-textLight text-sm">We arrive early, set up everything, and make your event absolutely unforgettable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="box">
-<img src="HB3.jpeg">
-</div>
+    <!-- Booking Form Section -->
+    <section id="booking" class="py-20 bg-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="scroll-reveal">
+                    <span class="text-accent font-bold tracking-widest uppercase text-sm">Reserve Your Date</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3 mb-6">Book Your Event</h2>
+                    <p class="text-textLight mb-8">Fill in your event details below and we'll WhatsApp you a confirmation and custom quote within minutes.</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3 text-sm text-textLight"><i class="fas fa-bolt text-primary"></i><span>Instant WhatsApp confirmation</span></div>
+                        <div class="flex items-center gap-3 text-sm text-textLight"><i class="fas fa-phone-alt text-primary"></i><span>Call: +91 9569870766</span></div>
+                        <div class="flex items-center gap-3 text-sm text-textLight"><i class="fab fa-whatsapp text-primary"></i><span>WhatsApp Booking Available 24×7</span></div>
+                        <div class="flex items-center gap-3 text-sm text-textLight"><i class="fab fa-instagram text-primary"></i><span>@vishal_dj_surajkund_wale_up65</span></div>
+                    </div>
+                    <div class="mt-6 p-6 bg-white rounded-2xl border border-primary/20 shadow-sm">
+                        <h4 class="font-bold text-primary mb-3 flex items-center gap-2"><i class="fas fa-check-circle"></i> We Cover All Events</h4>
+                        <ul class="space-y-2 text-sm text-text">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i>Shadi / Baarat / Sangeet / Reception</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i>Birthday & Anniversary Parties</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i>DJ Night, College Fest, Corporate Events</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i>Stage Show & Live Performances</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-accent text-xs"></i>All Family & Private Functions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="scroll-reveal bg-white rounded-3xl p-8 border border-orange-100 shadow-xl">
+                    <h3 class="text-xl font-bold text-text mb-6">Quick Booking Form</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-1">Your Name *</label>
+                            <input id="bk-name" type="text" class="w-full px-4 py-3 rounded-xl border-2 border-orange-100 bg-base text-sm" placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-1">Phone Number *</label>
+                            <input id="bk-phone" type="tel" class="w-full px-4 py-3 rounded-xl border-2 border-orange-100 bg-base text-sm" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-1">Event Type *</label>
+                            <select id="bk-event" class="w-full px-4 py-3 rounded-xl border-2 border-orange-100 bg-base text-sm">
+                                <option value="">Select event type</option>
+                                <option>💍 Wedding / Shadi</option>
+                                <option>🎵 Sangeet Night</option>
+                                <option>🥂 Reception</option>
+                                <option>🎂 Birthday Party</option>
+                                <option>💑 Anniversary Celebration</option>
+                                <option>🎉 DJ Night</option>
+                                <option>🎤 Stage Show</option>
+                                <option>🎓 College Fest / Corporate</option>
+                                <option>🏠 Private Family Function</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-1">Event Date *</label>
+                            <input id="bk-date" type="date" class="w-full px-4 py-3 rounded-xl border-2 border-orange-100 bg-base text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text mb-1">Event Details / Special Requirements</label>
+                            <textarea id="bk-msg" rows="3" class="w-full px-4 py-3 rounded-xl border-2 border-orange-100 bg-base text-sm resize-none" placeholder="Venue, number of guests, any special requests..."></textarea>
+                        </div>
+                        <button onclick="submitBooking()" class="btn-accent w-full py-4 rounded-xl text-white font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-xl"></i> Send Booking on WhatsApp
+                        </button>
+                        <p class="text-xs text-textLight text-center">Or call directly: <a href="tel:+919569870766" class="text-primary font-semibold">+91 9569870766</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="box">
-<img src="HB4.jpeg">
-</div>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Our Work</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3">Event Gallery</h2>
+                <p class="text-textLight mt-4 max-w-2xl mx-auto">A glimpse of the magical setups and unforgettable events we have delivered across Varanasi.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="venue-card bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-md card-hover scroll-reveal">
+                    <div class="overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=400&fit=crop" alt="Wedding Setup" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-text mb-1">Wedding Baarat Setup</h3>
+                        <p class="text-textLight text-sm flex items-center gap-1"><i class="fas fa-map-marker-alt text-accent text-xs"></i> Varanasi, UP</p>
+                        <div class="flex gap-2 mt-3">
+                            <span class="bg-primaryLight text-primary text-xs px-3 py-1 rounded-full font-medium">DJ</span>
+                            <span class="bg-accentLight text-accent text-xs px-3 py-1 rounded-full font-medium">Lighting</span>
+                            <span class="bg-base text-textLight text-xs px-3 py-1 rounded-full border">Decoration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-md card-hover scroll-reveal">
+                    <div class="overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=400&fit=crop" alt="DJ Night" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-text mb-1">DJ Night & Stage Show</h3>
+                        <p class="text-textLight text-sm flex items-center gap-1"><i class="fas fa-map-marker-alt text-accent text-xs"></i> Varanasi, UP</p>
+                        <div class="flex gap-2 mt-3">
+                            <span class="bg-primaryLight text-primary text-xs px-3 py-1 rounded-full font-medium">DJ Night</span>
+                            <span class="bg-accentLight text-accent text-xs px-3 py-1 rounded-full font-medium">Sound</span>
+                            <span class="bg-base text-textLight text-xs px-3 py-1 rounded-full border">Smoke</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card bg-white rounded-3xl overflow-hidden border border-orange-100 shadow-md card-hover scroll-reveal">
+                    <div class="overflow-hidden h-52">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=400&fit=crop" alt="Birthday Party" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-text mb-1">Birthday Party Decoration</h3>
+                        <p class="text-textLight text-sm flex items-center gap-1"><i class="fas fa-map-marker-alt text-accent text-xs"></i> Varanasi, UP</p>
+                        <div class="flex gap-2 mt-3">
+                            <span class="bg-primaryLight text-primary text-xs px-3 py-1 rounded-full font-medium">Balloons</span>
+                            <span class="bg-accentLight text-accent text-xs px-3 py-1 rounded-full font-medium">LED</span>
+                            <span class="bg-base text-textLight text-xs px-3 py-1 rounded-full border">Theme</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-textLight mt-8 text-sm">📸 See more on Instagram: <a href="https://instagram.com/vishal_dj_surajkund_wale_up65" target="_blank" class="text-primary font-semibold hover:underline">@vishal_dj_surajkund_wale_up65</a></p>
+        </div>
+    </section>
 
-</section>
+    <!-- Packages Section -->
+    <section id="packages" class="py-20 bg-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Choose Your Plan</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3">Event Packages</h2>
+                <p class="text-textLight mt-4 max-w-2xl mx-auto">Affordable packages for every budget — all inclusive with professional setup and on-site support.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="scheme-card rounded-3xl p-8 border border-primary/10 card-hover scroll-reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary text-xl flex-shrink-0">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-accent uppercase tracking-widest">Popular</span>
+                            <h3 class="text-xl font-bold text-text mt-1 mb-2">Basic DJ Package</h3>
+                            <p class="text-textLight text-sm mb-4">Professional DJ setup, 2 speakers, basic LED lighting, fog machine, and DJ for up to 5 hours. Ideal for birthday parties and small functions.</p>
+                            <div class="flex items-center gap-4">
+                                <button onclick="bookOnWhatsApp()" class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline">Book Now <i class="fas fa-chevron-right text-xs"></i></button>
+                                <span class="text-xs text-textLight bg-white px-3 py-1 rounded-full border">Up to 200 Guests</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scheme-card rounded-3xl p-8 border border-primary/10 card-hover scroll-reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent text-xl flex-shrink-0">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-accent uppercase tracking-widest">Best Value</span>
+                            <h3 class="text-xl font-bold text-text mt-1 mb-2">Wedding Full Package</h3>
+                            <p class="text-textLight text-sm mb-4">Complete wedding setup — Baarat DJ, Sangeet Night, Reception decor, LED truss, moving heads, smoke, and professional DJ for the full day.</p>
+                            <div class="flex items-center gap-4">
+                                <button onclick="bookOnWhatsApp()" class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline">Book Now <i class="fas fa-chevron-right text-xs"></i></button>
+                                <span class="text-xs text-textLight bg-white px-3 py-1 rounded-full border">Up to 1000 Guests</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scheme-card rounded-3xl p-8 border border-primary/10 card-hover scroll-reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary text-xl flex-shrink-0">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-accent uppercase tracking-widest">Events</span>
+                            <h3 class="text-xl font-bold text-text mt-1 mb-2">Stage Show Package</h3>
+                            <p class="text-textLight text-sm mb-4">Full stage construction, truss system, PA sound, LED backdrop, spot lights, moving heads, and tech crew for live performances and college fests.</p>
+                            <div class="flex items-center gap-4">
+                                <button onclick="bookOnWhatsApp()" class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline">Book Now <i class="fas fa-chevron-right text-xs"></i></button>
+                                <span class="text-xs text-textLight bg-white px-3 py-1 rounded-full border">Any Venue Size</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scheme-card rounded-3xl p-8 border border-primary/10 card-hover scroll-reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent text-xl flex-shrink-0">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-accent uppercase tracking-widest">Premium</span>
+                            <h3 class="text-xl font-bold text-text mt-1 mb-2">Full Decoration Package</h3>
+                            <p class="text-textLight text-sm mb-4">Balloon arches, floral decor, stage backdrop, LED fairy lights, entry gate decoration, table setups, and complete venue transformation.</p>
+                            <div class="flex items-center gap-4">
+                                <button onclick="bookOnWhatsApp()" class="text-primary font-semibold text-sm flex items-center gap-1 hover:underline">Book Now <i class="fas fa-chevron-right text-xs"></i></button>
+                                <span class="text-xs text-textLight bg-white px-3 py-1 rounded-full border">Customizable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="instagram">
+    <!-- Testimonials -->
+    <section class="py-20 bg-primary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5 pattern-bg"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-accentLight font-bold tracking-widest uppercase text-sm">Client Reviews</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-white mt-3">What Our Clients Say</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur rounded-3xl p-8 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i>
+                    </div>
+                    <p class="text-white/80 text-sm mb-6 leading-relaxed">"DJ Vishal bhai ne humari shadi ka DJ aur decoration ekdum zabardast kiya! Poora baarat me sab dance karte rahe. Varanasi me sabse best service hai unki. 100% recommend karunga!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-accentLight flex items-center justify-center text-accent font-bold">R</div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Rahul Gupta</p>
+                            <p class="text-white/60 text-xs">Wedding, Varanasi 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-3xl p-8 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i>
+                    </div>
+                    <p class="text-white/80 text-sm mb-6 leading-relaxed">"Meri beti ki birthday par DJ Vishal Events ka balloon decoration aur LED setup dekhkar sab dang rah gaye. Bahut sundar kaam kiya aur price bhi reasonable tha. Bahut bahut shukriya!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primaryLight flex items-center justify-center text-primary font-bold">S</div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Sunita Sharma</p>
+                            <p class="text-white/60 text-xs">Birthday Party, Varanasi 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-3xl p-8 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i><i class="fas fa-star text-accent text-sm"></i>
+                    </div>
+                    <p class="text-white/80 text-sm mb-6 leading-relaxed">"College fest ke liye DJ Vishal bhai ka stage show package liya tha. Sound quality aur lighting ekdum top class thi. Poora college jhoom utha! Agle saal bhi inhi ko book karenge."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-accentLight flex items-center justify-center text-accent font-bold">A</div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Ankit Singh</p>
+                            <p class="text-white/60 text-xs">College Fest, Varanasi 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2>Our Instagram Gallery</h2>
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-sm">Common Questions</span>
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-text mt-3">FAQs</h2>
+                <p class="text-textLight mt-4">Everything you need to know before booking DJ Vishal Events.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">Kitne din pehle booking karni chahiye?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">Hum suggest karte hain ki apni date se kam se kam 7–15 din pehle booking confirm karein, khaaskar wedding season mein. Urgent bookings ke liye bhi humse WhatsApp par baat kar sakte hain — hum apni best koshish karte hain slot available karne ki.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">Kya aap Varanasi se bahar bhi events karte hain?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">Haan! Hum Varanasi ke saath-saath aaspaas ke ilaqon jaise Mirzapur, Bhadohi, Chandauli, Ghazipur, Jaunpur, aur Prayagraj mein bhi services provide karte hain. Outstation events ke liye thoda extra travel charge lagta hai — details ke liye call karein.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">Kya DJ aur decoration ek saath milti hai?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">Bilkul! Hum combined packages offer karte hain jisme DJ setup, LED lighting, smoke effects, balloon decoration, stage setup — sab kuch ek hi jagah se milta hai. Yeh kaafi convenient aur budget-friendly bhi hota hai.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">What kind of music do you play?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">We play all genres — Bollywood hits, Bhojpuri, Wedding classics, EDM, and regional songs. You can share your playlist or song requests in advance and we'll make sure your event has exactly the vibe you want.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">Advance payment kitni deni hoti hai?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">Booking confirm karne ke liye ek chhota sa advance amount dena hota hai. Baki payment event ke din ya usse pehle ki ja sakti hai. Hum flexible hain — apni suvidha ke hisaab se baat karte hain.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-base rounded-2xl border border-orange-100 overflow-hidden scroll-reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left">
+                        <span class="font-semibold text-text">Setup kitne time mein hota hai?</span>
+                        <i class="fas fa-plus faq-icon text-primary flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="text-textLight text-sm pb-6">Normally hum event se 2–3 ghante pehle pahunch jaate hain aur poora setup kar lete hain. Bade events (stage shows, wedding) ke liye 4–5 ghante pehle set up shuru karte hain. Hum samay ki bilkul pabandi rakhte hain!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p>See latest events on Instagram</p>
+    <!-- Contact / CTA Banner -->
+    <section id="contact" class="py-20 bg-base">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-primary to-primaryDark rounded-3xl p-12 text-center text-white relative overflow-hidden scroll-reveal">
+                <div class="absolute inset-0 opacity-10 pattern-bg"></div>
+                <div class="relative z-10">
+                    <i class="fas fa-headphones-alt text-5xl text-accentLight mb-6 block opacity-80"></i>
+                    <h2 class="text-4xl font-serif font-bold mb-4">Ready to Make Your Event Epic?</h2>
+                    <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">Contact DJ Vishal Events today — Varanasi's most trusted DJ & event management service.</p>
+                    <div class="grid sm:grid-cols-3 gap-4 mb-8 text-left max-w-2xl mx-auto">
+                        <a href="https://wa.me/919569870766" target="_blank" class="flex items-center gap-3 bg-white/10 rounded-2xl p-4 hover:bg-white/20 transition-colors">
+                            <i class="fab fa-whatsapp text-2xl text-accentLight"></i>
+                            <div><p class="font-semibold text-sm">WhatsApp</p><p class="text-white/70 text-xs">+91 9569870766</p></div>
+                        </a>
+                        <a href="tel:+919569870766" class="flex items-center gap-3 bg-white/10 rounded-2xl p-4 hover:bg-white/20 transition-colors">
+                            <i class="fas fa-phone text-2xl text-accentLight"></i>
+                            <div><p class="font-semibold text-sm">Call Us</p><p class="text-white/70 text-xs">+91 9569870766</p></div>
+                        </a>
+                        <a href="https://instagram.com/vishal_dj_surajkund_wale_up65" target="_blank" class="flex items-center gap-3 bg-white/10 rounded-2xl p-4 hover:bg-white/20 transition-colors">
+                            <i class="fab fa-instagram text-2xl text-accentLight"></i>
+                            <div><p class="font-semibold text-sm">Instagram</p><p class="text-white/70 text-xs">@vishal_dj_<br>surajkund_wale_up65</p></div>
+                        </a>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="bookOnWhatsApp()" class="btn-accent px-10 py-4 rounded-full text-white font-bold text-lg shadow-lg inline-flex items-center gap-2 justify-center">
+                            <i class="fab fa-whatsapp"></i> Book on WhatsApp
+                        </button>
+                        <button onclick="scrollToSection('booking')" class="px-10 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white hover:text-primary transition-all inline-flex items-center gap-2 justify-center">
+                            <i class="fas fa-calendar-alt"></i> Fill Booking Form
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a class="instaBtn"
-href="https://instagram.com/vishal_dj_surajkund_wale_up65"
-target="_blank">
+    <!-- Footer -->
+    <footer class="bg-text text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-primaryDark rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-serif font-bold text-white">DJ Vishal Events</h1>
+                            <p class="text-xs text-white/50 tracking-widest uppercase">Varanasi</p>
+                        </div>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-4">Professional DJ & Event Management Services in Varanasi, UP. Making every event unforgettable.</p>
+                    <div class="flex gap-3">
+                        <a href="https://wa.me/919569870766" target="_blank" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors"><i class="fab fa-whatsapp text-sm"></i></a>
+                        <a href="https://instagram.com/vishal_dj_surajkund_wale_up65" target="_blank" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink-500 transition-colors"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="tel:+919569870766" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"><i class="fas fa-phone text-sm"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-5 text-white">Services</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
+                        <li><a href="#services" class="hover:text-accent transition-colors">Professional DJ Setup</a></li>
+                        <li><a href="#services" class="hover:text-accent transition-colors">LED Lighting Decoration</a></li>
+                        <li><a href="#services" class="hover:text-accent transition-colors">Balloon Decoration</a></li>
+                        <li><a href="#services" class="hover:text-accent transition-colors">Stage & Sound Setup</a></li>
+                        <li><a href="#services" class="hover:text-accent transition-colors">Wedding Event Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-5 text-white">Events</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
+                        <li><a href="#booking" class="hover:text-accent transition-colors">Wedding / Shadi</a></li>
+                        <li><a href="#booking" class="hover:text-accent transition-colors">Birthday Party</a></li>
+                        <li><a href="#booking" class="hover:text-accent transition-colors">Anniversary Celebration</a></li>
+                        <li><a href="#booking" class="hover:text-accent transition-colors">DJ Night</a></li>
+                        <li><a href="#booking" class="hover:text-accent transition-colors">Stage Show / College Fest</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-5 text-white">Contact Us</h4>
+                    <ul class="space-y-3 text-sm text-white/60">
+                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-accent mt-0.5"></i><span>Varanasi, Uttar Pradesh</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-phone text-accent mt-0.5"></i><a href="tel:+919569870766" class="hover:text-accent">+91 9569870766</a></li>
+                        <li class="flex items-start gap-2"><i class="fab fa-whatsapp text-accent mt-0.5"></i><span>WhatsApp Booking 24×7</span></li>
+                        <li class="flex items-start gap-2"><i class="fab fa-instagram text-accent mt-0.5"></i><a href="https://instagram.com/vishal_dj_surajkund_wale_up65" target="_blank" class="hover:text-accent text-xs">@vishal_dj_surajkund_wale_up65</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-sm">© 2025 DJ Vishal Events, Varanasi. All rights reserved.</p>
+                <div class="flex items-center gap-3 text-white/40 text-xs">
+                    <i class="fas fa-headphones text-primary"></i>
+                    <span>Varanasi's Trusted DJ Partner</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-View Instagram Gallery
+    <!-- ======= MODALS ======= -->
 
-</a>
+    <!-- Booking Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay p-4" onclick="handleOverlayClick(event,'successModal')">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md p-8 text-center relative">
+            <button onclick="closeModal('successModal')" class="absolute top-4 right-4 w-9 h-9 bg-base rounded-full flex items-center justify-center text-textLight"><i class="fas fa-times"></i></button>
+            <div class="w-20 h-20 bg-primaryLight rounded-full flex items-center justify-center text-primary text-4xl mx-auto mb-6"><i class="fab fa-whatsapp"></i></div>
+            <h3 class="text-2xl font-serif font-bold text-text mb-2">Opening WhatsApp!</h3>
+            <p class="text-textLight mb-6">Your booking details are being sent to DJ Vishal Events on WhatsApp. We'll confirm your booking shortly!</p>
+            <div class="bg-base rounded-2xl p-4 mb-6">
+                <p class="text-sm text-textLight">Contact Number</p>
+                <p class="text-2xl font-bold text-primary mt-1">+91 9569870766</p>
+            </div>
+            <button onclick="closeModal('successModal')" class="btn-primary px-10 py-3 rounded-full text-white font-bold">Done</button>
+        </div>
+    </div>
 
-</section>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        function openModal(id) {
+            const el = document.getElementById(id);
+            el.classList.remove('hidden');
+            el.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            el.classList.add('hidden');
+            el.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+        function handleOverlayClick(e, id) {
+            if (e.target === e.currentTarget) closeModal(id);
+        }
+        function toggleSearch() {
+            document.getElementById('searchBar').classList.toggle('hidden');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
 
-<section id="booking">
+        // WhatsApp direct booking (no form)
+        function bookOnWhatsApp() {
+            const phone = '919569870766';
+            const text = encodeURIComponent(
+`Hello DJ Vishal Events 🎧,
 
-<h2>Book DJ Event</h2>
+Mujhe apne event ke liye booking karni hai.
+Please quote bhejein.`
+            );
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        }
 
-<form id="bookingForm">
+        // Submit booking form → WhatsApp
+        function submitBooking() {
+            const name = document.getElementById('bk-name').value.trim();
+            const phone = document.getElementById('bk-phone').value.trim();
+            const event = document.getElementById('bk-event').value;
+            const date = document.getElementById('bk-date').value;
+            const message = document.getElementById('bk-msg').value.trim();
 
-<input type="text" id="name" placeholder="Your Name" required>
+            if (!name || !phone || !event || !date) {
+                alert('Please fill in all required fields (Name, Phone, Event Type, Date).');
+                return;
+            }
 
-<input type="tel" id="phone" placeholder="Phone Number" required>
+            const formattedDate = date ? new Date(date).toLocaleDateString('en-IN', {day:'numeric', month:'long', year:'numeric'}) : 'Not specified';
 
-<input type="date" id="date" required>
+            const text = encodeURIComponent(
+`Hello DJ Vishal Events,
 
-<select id="event">
+Name: ${name}
+Phone: ${phone}
+Event Type: ${event}
+Event Date: ${formattedDate}
 
-<option>Wedding</option>
-<option>Birthday</option>
-<option>Anniversary</option>
-<option>DJ Night</option>
+Event Details:
+${message || 'No additional details provided.'}`
+            );
 
-</select>
+            openModal('successModal');
+            setTimeout(() => {
+                window.open(`https://wa.me/919569870766?text=${text}`, '_blank');
+            }, 500);
+        }
 
-<textarea id="message"
-placeholder="Event details"></textarea>
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        }
 
-<button type="submit">Book via WhatsApp</button>
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
 
-</form>
-
-<div class="contactButtons">
-
-<a href="tel:+919569870766">📞 Call</a><br>
-
-<a href="sms:+919569870766">📩 SMS</a><br>
-
-<a href="https://wa.me/919569870766">💬 WhatsApp</a><br>
-
-</div>
-
-</section>
-
-<script>
-
-document.getElementById("bookingForm")
-.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-var name=document.getElementById("name").value;
-var phone=document.getElementById("phone").value;
-var date=document.getElementById("date").value;
-var event=document.getElementById("event").value;
-var message=document.getElementById("message").value;
-
-var text="Hello DJ Vishal,%0A"
-+"Name: "+name+"%0A"
-+"Phone: "+phone+"%0A"
-+"Event: "+event+"%0A"
-+"Date: "+date+"%0A"
-+"Details: "+message;
-
-window.open(
-"https://wa.me/919569870766?text="+text,
-"_blank"
-);
-
-});
-
-</script>
-
+        // ESC to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('[id$="Modal"]').forEach(m => {
+                    if (!m.classList.contains('hidden')) closeModal(m.id);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
